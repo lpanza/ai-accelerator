@@ -1,3 +1,3 @@
 - op: replace
   path: /spec/source/helm/parameters/1/value
-  value: 'apps.cluster-46r9v.46r9v.sandbox2783.opentlc.com' # Update me on fork or through bootstrap script
+  value: 'apps.cluster-bnwvq.bnwvq.sandbox3003.opentlc.com' # Update me on fork or through bootstrap script
