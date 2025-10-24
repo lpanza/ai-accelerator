@@ -4,4 +4,6 @@ namespace: parasol-insurance
 
 resources:
   - minio-data-connection.yaml
+  - wb.yaml
+  - pvc.yaml
 
