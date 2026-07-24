@@ -4,6 +4,6 @@ metadata:
   name: auth
 spec:
   adminGroups:
-    - rhods-admins
+    - rhods-admins-manual
   allowedGroups:
     - 'system:authenticated'
