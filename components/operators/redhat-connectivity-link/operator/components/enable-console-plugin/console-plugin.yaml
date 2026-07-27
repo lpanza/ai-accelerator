@@ -14,7 +14,7 @@ spec:
     service:
       basePath: /
       name: kuadrant-console-plugin
-      namespace: openshift-operators
+      namespace: kuadrant-system
       port: 9443
     type: Service
   displayName: Kuadrant Console Plugin
