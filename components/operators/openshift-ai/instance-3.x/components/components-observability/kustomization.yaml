@@ -8,3 +8,11 @@ patches:
   - path: patch-odhDashboardConfig.yaml
     target:
       kind: OdhDashboardConfig
+
+secretGenerator: 
+  - name: prometheus-web-tls-ca
+    namespace: redhat-ods-monitoring
+generatorOptions:
+  disableNameSuffixHash: true
+  annotations: 
+    service.beta.openshift.io/inject-cabundle: "true"
