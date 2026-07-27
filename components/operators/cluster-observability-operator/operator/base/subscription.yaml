@@ -5,7 +5,8 @@ metadata:
   namespace: openshift-cluster-observability-operator
 spec:
   channel: patch-me-see-overlays-dir
-  installPlanApproval: Automatic
+  installPlanApproval: Manual
   name: cluster-observability-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
+  startingCSV: cluster-observability-operator.v1.4.0
