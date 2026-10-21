@@ -26,6 +26,7 @@ CRDs
 CUDA
 CheCluster
 CloudEvents
+CloudNativePG
 ClusterIssuer
 ClusterRole
 ClusterRoleBinding
@@ -56,14 +57,17 @@ Elasticsearch
 Elyra
 Eval
 Eventing
+ExternalSecret
 FullAccess
 GPUs
 GatewayClass
+Gaudi
 GenAI
 Gi
 GitOps
 Gitea
 HTPasswd
+HashiCorp
 Hashicorp
 HuggingFace
 IAM
@@ -78,6 +82,7 @@ Infiniband
 Istio
 Jaeger
 Jenkins
+JobSet
 Jupyter
 KServe
 Kafka
@@ -93,6 +98,7 @@ Kueue
 Kyverno
 LDAP
 LLM
+LLMInferenceServices
 LM
 LVM
 Lifecycle
@@ -140,7 +146,9 @@ Querier
 RBAC
 README
 RHACM
+RHCL
 RHOAI
+ROCm
 RawDeployments
 Rebasing
 RoleBinding
@@ -154,6 +162,7 @@ SaaS
 Sagemaker
 SealedSecret
 SecretManager
+SecretStore
 SecureCluster
 Service
 ServiceMesh
@@ -161,6 +170,7 @@ ServingRuntime
 Skupper
 SonarQube
 SpringBoot
+Spyre
 Stackrox
 StorageClass
 StorageCluster
@@ -187,8 +197,10 @@ ack
 acm
 agentic
 ai
+aigateway
 aipipelines
 aiservices
+amd
 amq
 anythingllm
 api
@@ -205,6 +217,7 @@ arn
 auth
 authorino
 autocompletion
+autoscaling
 aws
 backend
 backticks
@@ -216,8 +229,10 @@ checluster
 cicd
 cli
 cloner
+cloudnative
 clusterissuer
 clusterrolebinding
+cnpg
 composable
 config
 configmap
@@ -248,6 +263,7 @@ eus
 eventing
 explainability
 finalizer
+gaudi
 generatorOptions
 github
 githubusercontent
@@ -351,6 +367,7 @@ repo
 repo's
 resourceNames
 rh
+rhcl
 rhel
 rhoai
 rhpds
@@ -392,6 +409,7 @@ truly
 trustyai
 txt
 un
+unmanaged
 url
 vLLM
 vSphere
@@ -400,6 +418,7 @@ vscode
 vsphere
 wordlist
 workspaces
+wva
 xlarge
 yaml
 yq

@@ -16,7 +16,10 @@ components:
   - ../../components/components-trainingoperator
   - ../../components/components-trustyai
   - ../../components/components-workbenches
+  - ../../components/disable-amd-runtimes
+  - ../../components/disable-gaudi-runtimes
+  - ../../components/disable-ibm-runtimes
+  - ../../components/gateway-inference
   - ../../components/hardware-profiles-nvidia-gpu
   - ../../components/idle-notebook-culling
-  - ../../components/inference-gateway
   - ../../components/rhoai-auth

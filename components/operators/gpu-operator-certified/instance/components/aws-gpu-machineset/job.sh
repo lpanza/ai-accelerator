@@ -4,10 +4,30 @@
 set -e
 
 ocp_aws_cluster(){
-  TARGET_NS=kube-system
-  OBJ=secret/aws-creds
-  echo "Checking if ${OBJ} exists in ${TARGET_NS} namespace"
-  oc -n "${TARGET_NS}" get "${OBJ}" -o name > /dev/null 2>&1 || return 1
+  MACHINE_SET=$(oc -n openshift-machine-api get machinesets.machine.openshift.io -o name | grep worker | head -n1)
+  if [ -z "${MACHINE_SET}" ]; then
+    echo "ERROR: No worker MachineSet found in openshift-machine-api"
+    exit 1
+  fi
+
+  CREDS_NAME=$(oc -n openshift-machine-api get "${MACHINE_SET}" \
+    -o jsonpath='{.spec.template.spec.providerSpec.value.credentialsSecret.name}')
+  CREDS_NS=$(oc -n openshift-machine-api get "${MACHINE_SET}" \
+    -o jsonpath='{.spec.template.spec.providerSpec.value.credentialsSecret.namespace}')
+
+  if [ -z "${CREDS_NAME}" ]; then
+    echo "ERROR: ${MACHINE_SET} has no providerSpec.value.credentialsSecret"
+    exit 1
+  fi
+
+  TARGET_NS=${CREDS_NS:-openshift-machine-api}
+  OBJ="secret/${CREDS_NAME}"
+
+  echo "Checking if ${OBJ} exists in ${TARGET_NS} namespace (from ${MACHINE_SET} credentialsSecret)"
+  if ! oc -n "${TARGET_NS}" get "${OBJ}" -o name > /dev/null 2>&1; then
+    echo "ERROR: ${OBJ} not found in ${TARGET_NS} namespace"
+    exit 1
+  fi
   echo "AWS cluster detected"
 }
 
@@ -43,6 +63,13 @@ ocp_aws_create_gpu_machineset(){
   oc -n openshift-machine-api \
     patch "${MACHINE_SET_TYPE}" \
     --type=merge --patch '{"spec":{"template":{"spec":{"providerSpec":{"value":{"instanceType":"'"${INSTANCE_TYPE}"'"}}}}}}'
+
+  NODE_VOLUME_SIZE=${NODE_VOLUME_SIZE:-100}
+  echo "Patching ${MACHINE_SET_TYPE} blockDevices volumeSize to ${NODE_VOLUME_SIZE}."
+  oc -n openshift-machine-api \
+    patch "${MACHINE_SET_TYPE}" \
+    --type=json \
+    --patch '[{"op":"replace","path":"/spec/template/spec/providerSpec/value/blockDevices/0/ebs/volumeSize","value":'"${NODE_VOLUME_SIZE}"'}]'
 }
 
 ocp_aws_clone_machineset(){
@@ -95,6 +122,6 @@ YAML
 
 INSTANCE_TYPE=${INSTANCE_TYPE:-g4dn.4xlarge}
 
-ocp_aws_cluster || exit 0
+ocp_aws_cluster
 ocp_aws_create_gpu_machineset ${INSTANCE_TYPE}
 ocp_create_machineset_autoscale

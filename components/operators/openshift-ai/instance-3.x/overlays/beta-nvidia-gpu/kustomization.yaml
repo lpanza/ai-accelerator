@@ -8,7 +8,7 @@ components:
   - ../../components/components-aipipelines
   - ../../components/components-feast
   - ../../components/components-kserve
-  # - ../../components/components-kserve-maas # disabled since maas needs postgres db deployed
+  - ../../components/components-kserve-maas
   - ../../components/components-mlflow
   - ../../components/components-mlflow-basic-instance
   - ../../components/components-modelregistry
@@ -18,7 +18,11 @@ components:
   - ../../components/components-trainingoperator
   - ../../components/components-trustyai
   - ../../components/components-workbenches
+  - ../../components/disable-amd-runtimes
+  - ../../components/disable-gaudi-runtimes
+  - ../../components/disable-ibm-runtimes
+  - ../../components/gateway-inference
   - ../../components/hardware-profiles-nvidia-gpu
   - ../../components/idle-notebook-culling
-  - ../../components/inference-gateway
+  - ../../components/maas-postgres-cnpg
   - ../../components/rhoai-auth
